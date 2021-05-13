@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <script type="module" src="{{ url_for('static', path='/index.js') }}"></script>
-        <link rel="shortcut icon" href="{{ url_for('static', path='images/favicon.ico') }}"/>
-        <link rel="stylesheet" href="{{ url_for('static', path='index.css') }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>{% block title %}{% endblock %} - MSYS2 Packages</title>
-    </head>
-    <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="{{ url_for('index') }}" style="line-height: 2em">
-          <img src="{{ url_for('static', path='images/logo.svg') }}" style="width:2em;height:2em;margin-right:0.5em;border-radius:.25rem" class="d-inline-block align-top" alt="MSYS2"> MSYS2 Packages
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        {% if not is_endpoint('search') %}
-        <form class="ms-auto input-group input-group-sm" style="width: auto" action="{{ url_for('search') }}" method="get">
-            <input class="form-control" type="search" name="q" placeholder="Package Search" aria-label="Package Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        {% endif %}
-        <div class="d-block d-md-none">
-          <ul class="navbar-nav me-auto">
+    <script type="module" src="{{ url_for('static', path='/index.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', path='images/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='index.css') }}">
+
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> -->
+
+    <title>{% block title %}{% endblock %} - MSYS2 Packages</title>
+  </head>
+
+  <body>
+    <firstheader class="py-1">
+      <div class="navbar-light navbar-expand-lg">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start px-3">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="height: 32px;"></span>
+          </button>
+          <a class="navbar-brand d-flex align-items-center mb-2 mb-lg-0 text-decoration-none"
+            href="{{ url_for('index') }}">
+            <img class="bi me-2" src="{{ url_for('static', path='images/banner.svg') }}" width="146" height="32"
+              role="img" aria-label="MSYS2" alt="MSYS2">
+          </a>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="nav d-flex flex-grow-1">
+              <li><a href="https://www.msys2.org" class="nav-link px-2">Get MSYS2</a></li>
+              <li><a href="https://github.com/msys2/msys2-web" class="nav-link px-2">Fork on GitHub</a></li>
+              <li><a href="{{ url_for('api', path='/') }}" class="nav-link px-2">API</a></li>
+            </ul>
+
+            {% if not is_endpoint('search') %}
+            <form class="nav d-flex" action="{{ url_for('search') }}" method="get">
+              <input class="form-control search ps-5" type="search" name="q" placeholder="Search"
+                aria-label="Package Search" aria-describedby="input-form" id="navbar-search">
+            </form>
+            <!-- <button type="button" search-open="" class="devsite-search-button devsite-header-icon-button button-flat material-icons" aria-label="Open search"></button> -->
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </firstheader>
+    <secondheader class="d-flex p-4">
+      <div class="d-flex justify-content-start flex-grow-1 text-size-sm">{{ self.title() }}</div>
+      <small class="text-muted text-size-sm">Last Update: {{ update_timestamp()|timestamp }}</small>
+    </secondheader>
+    <scrollbar>
+      <div class="px-2 text-md-start d-none d-md-block">
+        <div class="sticky-top">
+          <ul class="nav flex-column">
             {% include 'navbar.html' %}
           </ul>
         </div>
-        <div class="ms-auto">
-          <a href="https://www.msys2.org" class="btn btn-sm btn-outline-primary ml-auto">Get MSYS2</a>
-          <a href="https://github.com/msys2/msys2-web" class="btn btn-sm
-          btn-outline-info">Fork on GitHub</a>
-          <a href="{{ url_for('api', path='/') }}" class="btn btn-sm btn-outline-success">API</a>
-        </div>
       </div>
-    </nav>
+    </scrollbar>
+    <main-content class="mt-0 row">
+      <div class="col-md-2"></div>
+      <div class="p-0 col" id="main">
+        {% block inner_content %}
+        {% endblock %}
+      </div>
+    </main-content>
 
-<div class="container-xl">
-<div class="container-fluid p-0 p-md-2">
-  <div class="row">
-        <div class="col-md-2 p-0 px-2 text-center text-md-start d-none d-md-block">
-            <div class="sticky-top bg-light card overflow-hidden">
-             <ul class="nav flex-column">
-                {% include 'navbar.html' %}
-            </ul>
-            </div>
-        </div>
-        <div class="col-md-10 p-0" id="main">
-{% block inner_content %}
-{% endblock %}
-        </div>
-  </div>
-</div>
-<div><small class="text-muted">Last Update: {{ update_timestamp()|timestamp }}</small></div>
-</div>
+  </body>
 
-    </body>
 </html>

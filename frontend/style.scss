@@ -1,119 +1,178 @@
 $enable-responsive-font-sizes: true;
-@import './node_modules/bootstrap/scss/bootstrap';
-@import './node_modules/tippy.js/dist/tippy';
-@import './node_modules/tippy.js/themes/light-border';
+$font-weight-bold: 600;
 
-a {
-    text-decoration: none;
-}
+@import "./node_modules/bootstrap/scss/bootstrap";
+@import "./node_modules/tippy.js/dist/tippy";
+@import "./node_modules/tippy.js/themes/light-border";
 
-:root {
-    --bs-font-sans-serif: 'Roboto',sans-serif;
-    font-size: 15px;
-}
-
-.text-version {
-    word-break: break-word;
-}
-
-.file-list {
-    max-height: 700px;
-    overflow: auto;
-}
-
-.copyable {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    background-color: #eef1f3;
-    border: 1px solid #ccc;
-}
-
-.copyable .btn {
-    border: none;
-    border-left: 1px solid #ccc;
-    border-radius: 0;
-}
-
-.copyable pre {
-    margin: 0;
-    padding: 0 1em;
-    overflow-x: auto;
-}
-
-.copyable .highlight code::before {
-    color: teal;
-    display: inline;
-    content: "$ ";
-}
+$light-black: #293241;
+$dirty-white: #f8f9fa;
 
 body {
-  padding-top: 4.45rem;
+  font-family: "Open Sans", sans-serif;
 }
 
-.navbar {
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    padding: 0.5em 1em;
+firstheader {
+  background-color: $dirty-white;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+}
+firstheader .nav-link {
+  @extend .nav-link;
+  color: $light-black;
 }
 
-.nav hr, .navbar hr {
-    margin-top: 0.1em;
-    margin-bottom: 0.1em;
-    opacity: 0.1;
+secondheader {
+  background-color: #f8f9fa;
+  box-shadow: var(
+    --test,
+    0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 2px 6px 2px rgba(60, 64, 67, 0.15)
+  );
+  font-size: 20px;
 }
 
-.container-fluid .nav .nav-link {
-    color: #888;
+scrollbar {
+  position: absolute;
+  //height: 100vh;
 }
 
-.container-fluid .nav .nav-link.active {
-    color: #000;
+sidebar {
+  font-size: 13px;
 }
-
 .sticky-top {
-    top: 5rem;
+  top: 5rem;
 }
 
-@include media-breakpoint-down(xxl) {
-    .container-xl {
-        max-width: 1320px;
-    }
+.search {
+	display: inline-block;
+	content: "";
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85a1.007 1.007 0 00-.115-.1zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-size: 1.5rem;
+  background-position-y: center;
+  background-position-x: 0.5rem;
 }
+// main-content {
+//   display: grid;
+//   grid-template-columns: minmax(268px, 1fr) minmax(752px, 936px) minmax(
+//       160px,
+//       1fr
+//     );
+//   gap: 24px;
+// }
 
-@include media-breakpoint-down(xl) {
-    :root {
-        font-size: 14px;
-    }
-}
+// :root {
+//     --font-stack: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+//     --font-stack--monospace: "SFMono-Regular",Menlo,Consolas,Monaco,Liberation Mono,Lucida Console,monospace;
+//     --font-size--normal: 100%;
+//     --font-size--small: 87.5%;
+//     --font-size--small--2: 81.25%;
+//     --font-size--small--3: 75%;
+//     --font-size--small--4: 62.5%;
 
-@include media-breakpoint-down(md) {
-    :root {
-        font-size: 13px;
-    }
-}
+//     //--bs-font-sans-serif: 'Segeo UI','Roboto',sans-serif;
+//     //font-size: 15px;
+// }
 
-@include media-breakpoint-down(sm) {
-    :root {
-        font-size: 12px;
-    }
-}
+// .text-version {
+//     word-break: break-word;
+// }
 
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src: local('Roboto'), local('Roboto-Regular'),
-         url('fonts/roboto-latin-400-normal.woff2') format('woff2'),
-         url('fonts/roboto-latin-400-normal.woff') format('woff');
-  }
+// .file-list {
+//     max-height: 700px;
+//     overflow: auto;
+// }
 
-@font-face {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-display: swap;
-    font-weight: 700;
-    src: local('Roboto Bold'), local('Roboto-Bold'),
-            url('fonts/roboto-latin-700-normal.woff2') format('woff2'),
-            url('fonts/roboto-latin-700-normal.woff') format('woff');
-}
+// .copyable {
+//     display: flex;
+//     align-items: center;
+//     width: max-content;
+//     background-color: #eef1f3;
+//     border: 1px solid #ccc;
+// }
+
+// .copyable .btn {
+//     border: none;
+//     border-left: 1px solid #ccc;
+//     border-radius: 0;
+// }
+
+// .copyable pre {
+//     margin: 0;
+//     padding: 0 1em;
+//     overflow-x: auto;
+// }
+
+// .copyable .highlight code::before {
+//     color: teal;
+//     display: inline;
+//     content: "$ ";
+// }
+
+// body {
+//   //padding-top: 4.45rem;
+// }
+
+// .navbar {
+//     border-bottom: 1px solid rgba(0,0,0,.125);
+//     padding: 0.5em 1em;
+// }
+
+// .nav hr, .navbar hr {
+//     margin-top: 0.1em;
+//     margin-bottom: 0.1em;
+//     opacity: 0.1;
+// }
+
+// .container-fluid .nav .nav-link {
+//     color: #888;
+// }
+
+// .container-fluid .nav .nav-link.active {
+//     color: #000;
+// }
+
+// @include media-breakpoint-down(xxl) {
+//     .container-xl {
+//         max-width: 1320px;
+//     }
+// }
+
+// @include media-breakpoint-down(xl) {
+//     :root {
+//         font-size: 14px;
+//     }
+// }
+
+// @include media-breakpoint-down(md) {
+//     :root {
+//         font-size: 13px;
+//     }
+// }
+
+// @include media-breakpoint-down(sm) {
+//     :root {
+//         font-size: 12px;
+//     }
+// }
+
+// @font-face {
+//     font-family: 'Roboto';
+//     font-style: normal;
+//     font-display: swap;
+//     font-weight: 400;
+//     src: local('Roboto'), local('Roboto-Regular'),
+//          url('fonts/roboto-latin-400-normal.woff2') format('woff2'),
+//          url('fonts/roboto-latin-400-normal.woff') format('woff');
+//   }
+
+// @font-face {
+//     font-family: 'Roboto';
+//     font-style: normal;
+//     font-display: swap;
+//     font-weight: 700;
+//     src: local('Roboto Bold'), local('Roboto-Bold'),
+//             url('fonts/roboto-latin-700-normal.woff2') format('woff2'),
+//             url('fonts/roboto-latin-700-normal.woff') format('woff');
+// }
