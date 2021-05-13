@@ -1,6 +1,6 @@
-import "./style.scss";
-import "bootstrap";
-import tippy from "tippy.js";
+import './style.scss';
+import 'bootstrap/js/src/collapse.js';
+import tippy from 'tippy.js';
 
 class App {
     static copyToClipboard(button) {
